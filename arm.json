@@ -4,8 +4,9 @@
     "parameters": {
         "webSiteName": {
             "type": "string",
+            "defaultValue": "Ecom",
             "metadata": {
-                "description": "My HTML Page"
+                "description": "My Ecom Webpage"
             }
         }
     },
