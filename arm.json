@@ -35,7 +35,10 @@
                         "RepoUrl": "https://github.com/cassandraeguakun/AZ-Pipeline-Sample",
                         "branch": "main",
                         "IsManualIntegration": true
-                    }
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/sites', parameters('webSiteName'))]"
+                    ]
                 }
             ]
         }
