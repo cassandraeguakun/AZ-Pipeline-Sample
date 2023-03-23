@@ -1,0 +1,43 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "webSiteName": {
+            "type": "string",
+            "metadata": {
+                "description": "My HTML Page"
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Web/sites",
+            "name": "[parameters('webSiteName')]",
+            "apiVersion": "2019-08-01",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "siteConfig": {
+                    "appSettings": [
+                        {
+                            "name": "WEBSITE_NODE_DEFAULT_VERSION",
+                            "value": "10.14.1"
+                        }
+                    ]
+                }
+            },
+            "resources": [
+                {
+                    "name": "web",
+                    "type": "sourcecontrols",
+                    "location": "[concat('https://', parameters('webSiteName'), '.scm.azurewebsites.net/api/scm/info')]",
+                    "apiVersion": "2018-02-01",
+                    "properties": {
+                        "RepoUrl": "https://github.com/cassandraeguakun/AZ-Pipeline-Sample",
+                        "branch": "main",
+                        "IsManualIntegration": true
+                    }
+                }
+            ]
+        }
+    ]
+}
